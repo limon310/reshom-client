@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ProductCard from '../../components/ProductCard/ProductCard';
+import CollectionSkeleton from '../../components/Skeelton/CollectionSkeleton/CollectionSkeleton';
 
 const Collection = () => {
     const [products, setProducts] = useState([]);
@@ -17,7 +18,7 @@ const Collection = () => {
     }, []);
 
 
-    if (loading) return <span className="loading loading-ring loading-xl"></span>;
+    if (loading) return <CollectionSkeleton></CollectionSkeleton>;
 
     return (
         <div className="max-w-7xl mx-auto px-6 py-12">

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FaRegHeart } from 'react-icons/fa';
 import { useParams } from 'react-router';
+import ProductDetailSkeelton from '../../components/Skeelton/ProductDetailSkeelton/ProductDetailSkeelton';
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -8,6 +9,7 @@ const ProductDetails = () => {
   const [product, setProduct] = useState(null);
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch('/product.json')
@@ -15,10 +17,11 @@ const ProductDetails = () => {
       .then((data) => {
         const found = data.find((item) => item.id === parseInt(id));
         setProduct(found);
+        setLoading(false)
       });
   }, [id]);
 
-  if (!product) return <div className="text-center py-20">Loading...</div>;
+  if (loading) return <ProductDetailSkeelton></ProductDetailSkeelton>;
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-12 md:py-20">

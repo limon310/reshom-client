@@ -6,7 +6,7 @@ import { Link, NavLink } from 'react-router';
 const Navbar = () => {
     const links = <>
     <li className="text-gray-700 font-medium py-2 text-lg "><NavLink to="/">Home</NavLink></li>
-    <li className="text-gray-700 font-medium py-2 text-lg"><NavLink to="/">Collection</NavLink></li>
+    <li className="text-gray-700 font-medium py-2 text-lg"><NavLink to="/collection">Collection</NavLink></li>
     </>
     return (
         <nav className="navbar bg-white/80 sticky top-0 z-50 shadow-sm px-4 lg:px-12">

@@ -3,7 +3,7 @@ import React from 'react';
 import modelImg from '../../../assets/images/fashion lady.jpg'
 const Hero = () => {
   return (
-    <section className="relative bg-stone-50 min-h-[80vh] flex items-center justify-center px-6 lg:px-12 mt-5">
+    <section className="relative bg-stone-50 min-h-[80vh] flex items-center justify-center px-6 lg:px-12 mt-5 mb-5">
       
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 z-10">
         

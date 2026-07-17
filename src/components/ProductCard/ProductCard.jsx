@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { } from 'react';
 import { Link } from 'react-router';
 
 const ProductCard = ({ product }) => {
-  const {id} = product;
+  const { id } = product;
+  
   return (
     <div className="group border border-gray-100 p-2 hover:shadow-lg transition-all duration-500 bg-white cursor-pointer">
       {/* Image Container */}
@@ -24,16 +25,11 @@ const ProductCard = ({ product }) => {
             <span className="text-gray-900 font-bold">৳{product.discountPrice}</span>
             <span className="text-gray-400 line-through text-sm">৳{product.price}</span>
           </div>
-          {/* Add to Cart Button */}
-          {/* <button className="w-full mt-4 border border-black py-2 text-sm uppercase hover:bg-black hover:text-white transition-all cursor-pointer">
-          Add to Cart
-        </button> */}
+          <button className="w-full mt-4 border border-black py-2 text-sm uppercase hover:bg-black hover:text-white transition-all cursor-pointer">
+            View Details
+          </button>
         </div>
       </Link>
-      {/* Add to Cart Button */}
-      <button className="w-full mt-4 border border-black py-2 text-sm uppercase hover:bg-black hover:text-white transition-all cursor-pointer">
-        Add to Cart
-      </button>
     </div>
   );
 };

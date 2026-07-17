@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FaRegHeart } from 'react-icons/fa';
 import { useParams } from 'react-router';
 import ProductDetailSkeelton from '../../components/Skeelton/ProductDetailSkeelton/ProductDetailSkeelton';
+import { CartContext } from '../../context/CartContext';
+import toast from 'react-hot-toast';
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -10,6 +12,27 @@ const ProductDetails = () => {
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
   const [loading, setLoading] = useState(true);
+  const { addToCart } = useContext(CartContext);
+
+  const handleAddToCart = () => {
+    if (product.colors.length > 0 && !selectedColor) {
+      toast.error("Please select a color!");
+      return;
+    }
+    if (product.sizes.length > 0 && !selectedSize) {
+      toast.error("Please select a size!");
+      return;
+    }
+
+    const productToAdd = {
+      ...product,
+      selectedColor,
+      selectedSize
+    };
+
+    addToCart(productToAdd);
+    toast.success(`${product.name} added to cart!`);
+  };
 
   useEffect(() => {
     fetch('/product.json')
@@ -26,13 +49,13 @@ const ProductDetails = () => {
   return (
     <div className="max-w-7xl mx-auto px-6 py-12 md:py-20">
       <div className="grid md:grid-cols-2 gap-12 lg:gap-20">
-        
+
         {/* Left: Image */}
         <div className="bg-gray-50 p-4">
-          <img 
-            src={product.image} 
-            alt={product.name} 
-            className="w-full h-auto object-cover hover:scale-[1.02] transition-transform duration-500" 
+          <img
+            src={product.image}
+            alt={product.name}
+            className="w-full h-auto object-cover hover:scale-[1.02] transition-transform duration-500"
           />
         </div>
 
@@ -42,7 +65,7 @@ const ProductDetails = () => {
           <div className="flex items-center gap-4 my-4">
             <span className="text-3xl font-semibold text-gray-800">৳{product.discountPrice}</span>
             <span className="text-xl text-gray-400 line-through">৳{product.price}</span>
-            <span className="bg-black text-white px-3 py-1 text-xs uppercase tracking-widest">Save {Math.round(((product.price - product.discountPrice)/product.price)*100)}%</span>
+            <span className="bg-black text-white px-3 py-1 text-xs uppercase tracking-widest">Save {Math.round(((product.price - product.discountPrice) / product.price) * 100)}%</span>
           </div>
 
           <p className="text-gray-600 leading-relaxed mb-6">{product.description}</p>
@@ -69,7 +92,7 @@ const ProductDetails = () => {
 
           {/* Buttons */}
           <div className="flex gap-4">
-            <button className="flex-1 bg-black text-white py-4 uppercase font-medium hover:bg-gray-800 transition-all">Add to Cart</button>
+            <button onClick={handleAddToCart} className="flex-1 bg-black text-white py-4 uppercase font-medium hover:bg-gray-800 transition-all cursor-pointer">Add to Cart</button>
             <button className="px-8 border border-gray-300 hover:bg-gray-100 transition-all"><span><FaRegHeart size={24} /></span></button>
           </div>
 

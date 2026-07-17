@@ -34,7 +34,7 @@ const Navbar = () => {
 
             {/* End Section */}
             <div className="navbar-end">
-                <span className='mr-10 cursor-pointer'><Link to="/"><FaShoppingCart size={30} /></Link></span>
+                <span className='mr-10 cursor-pointer'><Link to="/cart"><FaShoppingCart size={30} /></Link></span>
                 <Link to="/">
                 <button className="btn bg-gray-900 text-white hover:bg-black rounded-full px-6 shadow-md transition-transform active:scale-95">
                     Shop Now
